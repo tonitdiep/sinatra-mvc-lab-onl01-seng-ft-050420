@@ -1,19 +1,19 @@
 class PigLatinizer
 
-  def piglatinize(word)
-    return word if %w[and an in].include?(word) #one syllable exceptions
-    letters = word.split("")
-    letters.keep_if {|letter| letter != "."}
-    if letters.size > 1
-      until vowel?(letters[0]) 
-        letters << letters.shift
-      end
-      letters << "ay"
-    end
-    letters.join
-  end
+  # def piglatinize(word)
+  #   return word if %w[and an in].include?(word) #one syllable exceptions
+  #   letters = word.split("")
+  #   letters.keep_if {|letter| letter != "."}
+  #   if letters.size > 1
+  #     until vowel?(letters[0]) 
+  #       letters << letters.shift
+  #     end
+  #     letters << "ay"
+  #   end
+  #   letters.join
+  # end
 
-  def piglatinize(text)
+  def to_pig_latin(text)
     if /^[aeiou]/i.match(text)
       "#{text}way"
     else
@@ -22,9 +22,9 @@ class PigLatinizer
     end
   end
 
-  def to_pig_latin(text)
+  def piglatinize(text)
     words = text.split(" ")
-    words.map! {|word| piglatinize(word)}
+    words.map! {|word| to_pig_latin(word)}
     words.join(" ")
   end
 
