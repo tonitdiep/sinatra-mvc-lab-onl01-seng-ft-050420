@@ -12,11 +12,6 @@ class PigLatinizer
   #   end
   #   letters.join
   # end
-  def piglatinize(text)
-    words = text.split(" ")
-    words.map! {|word| to_pig_latin(word)}
-    words.join(" ")
-  end
   
   def to_pig_latin(text)
     if /^[aeiou]/i.match(text)
@@ -25,6 +20,12 @@ class PigLatinizer
       parts = text.split(/([aeiou].*)/)
       "#{parts[1]}#{parts[0]}ay"
     end
+  end
+  
+  def piglatinize(text)
+    words = text.split(" ")
+    words.map! {|word| to_pig_latin(word)}
+    words.join(" ")
   end
 
   def vowel?(letter)
